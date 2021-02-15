@@ -1,0 +1,5 @@
+.idea
+vendor
+coverage
+infection.log
+.phpunit.result.cache
