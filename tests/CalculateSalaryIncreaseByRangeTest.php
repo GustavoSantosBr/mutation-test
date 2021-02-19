@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Test;
 
 use Mutation\CalculateSalaryIncreaseByRange;
+use Mutation\FeeOfIncrease;
+use Mutation\SalaryRange;
 use PHPUnit\Framework\TestCase;
 
 class CalculateSalaryIncreaseByRangeTest extends TestCase
@@ -12,12 +14,14 @@ class CalculateSalaryIncreaseByRangeTest extends TestCase
     /**
      * @var CalculateSalaryIncreaseByRange
      */
-    private $calculateSalaryIncreaseByRange;
+    private CalculateSalaryIncreaseByRange $calculateSalaryIncreaseByRange;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->calculateSalaryIncreaseByRange = new CalculateSalaryIncreaseByRange();
+        $salaryRange = self::createMock(SalaryRange::class);
+        $feeOfIncrease = self::createMock(FeeOfIncrease::class);
+        $this->calculateSalaryIncreaseByRange = new CalculateSalaryIncreaseByRange($salaryRange, $feeOfIncrease);
     }
 
     public function testOfSalaryIncreaseWhenSalaryIsHigh(): void
